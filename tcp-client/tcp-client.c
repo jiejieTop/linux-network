@@ -2,7 +2,7 @@
  * @Author: jiejie
  * @Github: https://github.com/jiejieTop
  * @Date: 2019-11-14 00:54:15
- * @LastEditTime: 2019-11-18 12:59:10
+ * @LastEditTime: 2019-11-20 02:11:19
  * @Description: the code belongs to jiejie, please keep the author information and source code according to the license.
  */
 #include <stdio.h>
@@ -47,7 +47,7 @@ int main(void)
         exit(1);
     } 
 
-    bzero(&server, sizeof(struct sockaddr));
+    bzero(&server, sizeof(server));
 	server.sin_family = AF_INET;
 	server.sin_port = htons(PORT);
 	server.sin_addr = addr;
