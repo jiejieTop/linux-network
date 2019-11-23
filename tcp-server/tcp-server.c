@@ -2,7 +2,7 @@
  * @Author: jiejie
  * @Github: https://github.com/jiejieTop
  * @Date: 2019-11-22 19:16:13
- * @LastEditTime: 2019-11-22 19:46:31
+ * @LastEditTime: 2019-11-23 21:26:11
  * @Description: the code belongs to jiejie, please keep the author information and source code according to the license.
  */
 #include <stdio.h>
@@ -15,7 +15,7 @@
 #include <sys/types.h>
 
 #define MAX 10*1024
-#define PORT 8124
+#define PORT 6666
 
 // Driver function
 int main()
@@ -54,7 +54,7 @@ int main()
         exit(0);
     }
 
-    printf("server listening..\n");
+    printf("server listening...\n");
     
     len = sizeof(client);
 
@@ -72,21 +72,27 @@ int main()
         bzero(buff, MAX);
 
         // read the messtruct sockaddrge from client and copy it in buffer
-        read(sockfd, buff, sizeof(buff));
+        if (read(connfd, buff, sizeof(buff)) <= 0) {
+            printf("client close...\n");
+            close(connfd);
+            break;
+        }
+
         // print buffer which contains the client contents
-        printf("from client: %s\t To client : ", buff);
+        printf("from client: %s\n", buff);
 
         // and send that buffer to client
-        write(sockfd, buff, sizeof(buff));
+        write(connfd, buff, sizeof(buff));
 
         // if msg contains "Exit" then server exit and chat ended.
         if (strncmp("exit", buff, 4) == 0) {
             printf("server exit...\n");
+            close(connfd);
             break;
         }
     }
-
     // After chatting close the socket
     close(sockfd);
+    exit(0);
 }
 

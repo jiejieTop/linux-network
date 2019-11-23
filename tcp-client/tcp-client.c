@@ -2,13 +2,14 @@
  * @Author: jiejie
  * @Github: https://github.com/jiejieTop
  * @Date: 2019-11-14 00:54:15
- * @LastEditTime: 2019-11-22 20:06:05
+ * @LastEditTime: 2019-11-23 21:26:33
  * @Description: the code belongs to jiejie, please keep the author information and source code according to the license.
  */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <errno.h>
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
@@ -16,8 +17,8 @@
 #include <netdb.h>
 
 //#define HOST "jiedev.com"
-#define HOST "192.168.0.3"
-#define PORT 5002
+#define HOST "192.168.1.102"
+#define PORT 6666
 #define MAX_DATA (10*1024)
 
 
